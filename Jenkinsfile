@@ -17,7 +17,7 @@ pipeline{
                 timestamps()
             }
             steps {
-                sh 'npm -v'
+                echo 'This is a test'
             }
         }
         
