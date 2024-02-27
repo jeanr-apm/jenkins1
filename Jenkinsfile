@@ -10,6 +10,10 @@ pipeline{
         timeout(time:1, unit:'HOURS')
     }
 
+    environment {
+        TZ = 'America/New_York'
+    }
+
     stages{
         stage('build'){
 
