@@ -17,7 +17,7 @@ pipeline{
                 timestamps()
             }
             steps {
-                echo 'This is a test'
+                echo 'This is a test 2'
             }
         }
         
