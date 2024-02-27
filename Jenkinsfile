@@ -6,7 +6,7 @@ pipeline{
     }
 
     triggers{
-        cron('* * * * *')
+        pollSCM('* * * * *')
     }
 
     stages{
@@ -16,7 +16,7 @@ pipeline{
                 timestamps()
             }
             steps {
-                echo 'Testing Cron trigger'
+                echo 'Testing pollSCM trigger'
             }
         }
         
