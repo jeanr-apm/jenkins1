@@ -14,6 +14,7 @@ pipeline{
 
                 stage('build backend'){
                     steps {
+                        echo "${VARIABLE}"
                         echo 'build backend'
                     }
                 }
