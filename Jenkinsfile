@@ -1,11 +1,7 @@
 pipeline{
     agent any
 
-    parameters {
-        booleanParam(name: 'DEPLOY_TO', defaultValue: false, description: 'Are you sure you want to deploy?')
-    }
-
-    
+        
     stages{
         stage('build'){
             failFast true
