@@ -8,8 +8,19 @@ pipeline{
     
     stages{
         stage('build'){
-            steps {
-                echo 'build!'
+            failFast true
+            parallel {
+                stage('build frontend'){
+                    steps {
+                        echo 'build frontend'
+                    }
+                }
+
+                stage('build backend'){
+                    steps {
+                        echo 'build backend'
+                    }
+                }
             }
         }
 
