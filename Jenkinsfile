@@ -1,10 +1,14 @@
 pipeline{
     agent any
 
+    options {
+        parallelAlwaysFailFast()
+    }
+
         
     stages{
         stage('build'){
-            failFast true
+            //failFast true
             parallel {
                 stage('build frontend'){
                     steps {
