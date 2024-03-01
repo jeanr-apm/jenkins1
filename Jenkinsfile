@@ -27,7 +27,7 @@ pipeline{
         stage('deployment'){
            when{
             anyOf{
-                branch 'masterx'
+                branch 'master'
                 expression {params.DEPLOY_TO}
             }
            }
