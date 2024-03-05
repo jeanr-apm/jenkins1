@@ -1,51 +1,40 @@
 pipeline{
     agent any
 
-    options {
-        parallelsAlwaysFailFast()
-    }
-
-        
     stages{
-        stage('build'){
-            //failFast true
-            parallel {
-                stage('build frontend'){
-                    steps {
-                        echo 'build frontend'
+        stage('Build and Test'){
+            matrix{
+                axes{
+                    axis{
+                        name 'PLATFORM'
+                        values 'Linux', 'MacOs', 'Windows'
+                    }
+                    axis{
+                        name 'BROWSER'
+                        values 'Safari', 'Firefox', 'Chrome'
                     }
                 }
-
-                stage('build backend'){
-                    steps {
-                        echo "${VARIABLE}"
-                        echo 'build backend'
+                stages{
+                    stage('Build'){
+                        steps{
+                            echo "Build for ${PLATFORM} - ${BROWSER}"
+                        }
+                    }
+                    stage('Test'){
+                        steps{
+                            echo "Test for ${PLATFORM} - ${BROWSER}"
+                        }
                     }
                 }
             }
+
         }
 
-        stage('deployment'){
-           when{
-            anyOf{
-                branch 'master'
-                expression {params.DEPLOY_TO}
+        stage('Deployment'){
+            steps{
+                echo 'Deploying app...'
             }
-           }
-           
-           steps{
-            echo 'Deploy !'
-           }
         }
-        
-    }
 
-    post{
-        always{
-            echo 'Always!!!'
-        }
-        success{
-            echo 'Success!!!'
-        }
     }
 }
